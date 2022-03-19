@@ -1,5 +1,5 @@
 const path = require('path')
-
+const webpack = require('webpack')
 module.exports = {
     entry: './src/main.js',
     output: {
@@ -48,8 +48,21 @@ module.exports = {
                         presets: ['es2015']
                     }
                 }
+            },
+            {
+                test:/\.vue$/,
+                use: ['vue-loader']
             }
 
         ],
     },
+    resolve: {
+        //别名
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
+    plugins: [
+        new webpack.BannerPlugin('最终版权')
+    ]
 }
